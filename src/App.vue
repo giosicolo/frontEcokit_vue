@@ -1,5 +1,6 @@
 <script setup>
-//import HelloWorld from './components/HelloWorld.vue'
+//import HelloWorld from './components/HelloWorld.vue' 
+//comentario borrame
 import TheWelcome from './components/TheWelcome.vue'
 
 //Aca probe importar una barrita de tareas basica para irme amigando con vue
