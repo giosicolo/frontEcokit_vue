@@ -30,7 +30,7 @@
 
   
 <script>
-import Form from '../components/MantenimientoForm.vue'
+import Form from '../components/FormMantenimiento.vue'
 export default {
   data() {
     return {
@@ -50,8 +50,22 @@ export default {
           tipoMantenimiento: 'Mantenimiento B',
           planta: 'Planta 2',
           usuario: 'Usuario 2',
-        },
-        // Agrega más ejemplos de mantenimientos
+        },{
+          id: 3,
+          fecha: '2023-10-02',
+          alquiler: 'Alquiler 3',
+          tipoMantenimiento: 'Mantenimiento B',
+          planta: 'Planta 3',
+          usuario: 'Usuario 3',
+        },{
+          id: 4,
+          fecha: '2023-10-02',
+          alquiler: 'Alquiler 3',
+          tipoMantenimiento: 'Mantenimiento C',
+          planta: 'Planta 3',
+          usuario: 'Usuario 3',
+        }
+        // Ejemplos de datos
       ],
     };
   },components: {
@@ -63,7 +77,7 @@ export default {
 
 
 <style scoped>
-/* Agrega estilos personalizados para esta vista si es necesario */
+/* Agrega estilos personalizados para esta vista  */
 .mantenimiento {
   text-align: center;
   padding: 20px;

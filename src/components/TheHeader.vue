@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #95f5b6;">
     <div class="container">
       <router-link to="/" class="navbar-brand"><img src="src\assets\logoEcokit.png" alt="Logo" width="150" height="40"></router-link>
 
@@ -50,5 +50,5 @@ export default {
 </script>
 
 <style scoped>
-/* Puedes agregar estilos personalizados aquí si es necesario */
+
 </style>
