@@ -1,10 +1,10 @@
-//import './assets/main.css'
-import './assets/bootstrap.min.css'
-import './assets/bootstrap.bundle.min.js'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './routers/router'; // Importa el archivo de configuración del enrutador
 
+const app = createApp(App);
+app.use(router); // Utiliza Vue Router en tu aplicación
 
-
-import { createApp } from 'vue'
-import App from './App.vue'
-
-createApp(App).mount('#app')
+app.mount('#app');
