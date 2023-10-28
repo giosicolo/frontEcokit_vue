@@ -17,12 +17,15 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+
           <li class="nav-item">
             <router-link to="/" class="nav-link">Inicio</router-link>
           </li>
+
           <li class="nav-item">
             <router-link to="/mantenimiento" class="nav-link">Mantenimientos</router-link>
           </li>
+
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Matenimientos
@@ -34,6 +37,11 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
+
+          <li class="nav-item">
+            <router-link to="/remitos" class="nav-link">Remitos</router-link>
+          </li>
+
           <li class="nav-item">
             <router-link to="/pagina2" class="nav-link">Página 2</router-link>
           </li>
