@@ -31,8 +31,8 @@
   </template>
   
   <script>
-  import nuevoRemito from '../components/nuevo_remito.vue';
-  import listarRemitos from '../components/listar_remitos.vue';
+  import nuevoRemito from '../components/remitos/nuevo_remito.vue';
+  import listarRemitos from '../components/remitos/listar_remitos.vue';
   
   export default {
     components: {
