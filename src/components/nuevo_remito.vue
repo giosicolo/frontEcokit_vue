@@ -6,7 +6,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="monto">Monto en $:</label>
-            <input type="number" id="monto" v-model="nuevoRemito.monto" class="form-control" required>
+            <input type="number" id="monto" v-model="nuevoRemito.monto" class="form-control" requireddisabled >
           </div>
         </div>
         <div class="col-md-6">
@@ -41,7 +41,7 @@
         <input type="text" id="detalle" v-model="nuevoRemito.detalle" class="form-control" required>
       </div>
 
-      <button type="submit" class="btn btn-primary">Registrar Remito</button>
+      <button type="submit" class="btn btn-primary">Previsualizar Remito</button>
     </form>
   </div>
 </template>
