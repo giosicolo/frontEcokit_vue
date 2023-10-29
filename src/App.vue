@@ -1,25 +1,28 @@
-<script setup>
-//import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<template>
+  <div id="app">
+    <MainMenu></MainMenu>
+    <router-view /> <!-- Esta etiqueta muestra la vista correspondiente según la URL -->
+  </div>
+  <div>
+    <Footer></Footer>
+  </div>
+</template>
 
-//Aca probe importar una barrita de tareas basica para irme amigando con vue
-import TheHeader from './components/TheHeader.vue';
-
+<script>
+import MainMenu from './components/TheHeader.vue'
+import Footer from './components/TheFooter.vue'
+export default {
+  name: 'App',
+  components:{
+    MainMenu,
+    Footer
+  }
+}
 </script>
 
-<template>
-   
-  
-  <header>
-    <TheHeader />
-    
-    
-  </header>
-
-  <main>
-    <img alt="Vue logo" src="./assets/logo.svg" width="125" height="125" />
-    <TheWelcome />
- 
-  </main>
-
-</template>
+<style>
+  #app {
+  background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
+  /* Otros estilos para tu contenedor principal */
+}
+</style>
