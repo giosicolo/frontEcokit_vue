@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #95f5b6;">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
     <div class="container">
-      <router-link to="/" class="navbar-brand"><img src="src\assets\logoEcokit.png" alt="Logo" width="150" height="40"></router-link>
+      <router-link to="/" class=""><img src="src\assets\logoEcokitBlanco.png" alt="Logo" width="150" height="40"></router-link>
 
       <button
         class="navbar-toggler"
@@ -17,35 +17,16 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">Inicio</router-link>
-          </li>
-
-          <li class="nav-item">
-            <router-link to="/mantenimiento" class="nav-link">Mantenimientos</router-link>
-          </li>
-
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Matenimientos
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><router-link to="/mantenimiento" class="nav-link">Nuevo Mantenimientos</router-link></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+        <li class="nav-item">
+          <router-link to="/" class="nav-link">Inicio</router-link>
         </li>
-
-          <li class="nav-item">
-            <router-link to="/remitos" class="nav-link">Remitos</router-link>
-          </li>
-
-          <li class="nav-item">
-            <router-link to="/pagina2" class="nav-link">Página 2</router-link>
-          </li>
-        </ul>
+        <li class="nav-item">
+          <router-link to="/mantenimiento" class="nav-link nav-link-active">Mantenimientos</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/remitos" class="nav-link nav-link-active">Remitos</router-link>
+        </li>
+      </ul>
       </div>
     </div>
   </nav>
@@ -58,5 +39,8 @@ export default {
 </script>
 
 <style scoped>
-
+ .router-link-exact-active {
+  background-color: #333; /* Cambia el color de fondo del enlace activo */
+  color: #fff; /* Cambia el color del texto del enlace activo */
+}
 </style>

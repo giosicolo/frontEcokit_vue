@@ -3,9 +3,7 @@
     <MainMenu></MainMenu>
     <router-view /> <!-- Esta etiqueta muestra la vista correspondiente según la URL -->
   </div>
-  <div>
     <Footer></Footer>
-  </div>
 </template>
 
 <script>
@@ -23,6 +21,8 @@ export default {
 <style>
   #app {
   background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
-  /* Otros estilos para tu contenedor principal */
+  min-height: 93vh;
+  flex-direction: column;
 }
+
 </style>

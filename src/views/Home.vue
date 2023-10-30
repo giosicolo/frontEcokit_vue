@@ -38,11 +38,12 @@
   background-image: url('../assets/BackGround.png'); /* Ruta de tu imagen de fondo */
   background-size: cover;
   background-position: center;
-  height: 70vh;
+  height: 100vh;
+  width: 100%;
   align-items: center;
   justify-content: center;
   color: #ffffff; /* Color de texto en el fondo */
+  display: flex;
 }
-
 /* Otras clases de estilo que necesites */
 </style>
