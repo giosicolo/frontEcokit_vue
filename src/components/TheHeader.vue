@@ -24,6 +24,9 @@
           <router-link to="/mantenimiento" class="nav-link nav-link-active">Mantenimientos</router-link>
         </li>
         <li class="nav-item">
+          <router-link to="/alquileres" class="nav-link nav-link-active">Alquileres</router-link>
+        </li>
+        <li class="nav-item">
           <router-link to="/remitos" class="nav-link nav-link-active">Remitos</router-link>
         </li>
       </ul>
