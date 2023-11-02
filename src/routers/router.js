@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import MantenimientoLista from '../views/MantenimientoLista.vue' // Importa la vista Mantenimiento
 import Remitos from '../views/Remitos.vue' // Importa la vista Remitos
-import Alquileres from '../views/Alquileres.vue' // Importa la vista Alquileres
+
 
 
 
@@ -17,11 +17,6 @@ const routes = [
     path: '/remitos', // Ruta para la vista Remitos
     name: 'Remitos',
     component: Remitos // Asocia la ruta con la vista Remitos
-  },
-  {
-    path: '/alquileres', // Ruta para la vista Alquileres
-    name: 'Alquileres',
-    component: Alquileres // Asocia la ruta con la vista Alquileres
   }
   // Agrega aquí otras rutas según sea necesario
 ];
