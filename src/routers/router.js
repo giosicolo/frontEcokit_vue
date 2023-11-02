@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 import MantenimientoLista from '../views/MantenimientoLista.vue' // Importa la vista Mantenimiento
 import Remitos from '../views/Remitos.vue' // Importa la vista Remitos
 import Alquileres from '../views/vista_alta_alquiler.vue'
+
 const routes = [
   { path: '/', component: Home },
   {
