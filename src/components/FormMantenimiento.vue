@@ -1,35 +1,61 @@
 <template>
-    <form @submit="submitForm" class="my-3">
-      <div class="row mb-3">
-        <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
-        <div class="col-sm-3">
-            <input type="date" id="fecha" v-model="nuevoMantenimiento.fecha" class="form-control">
-        </div>        
-     </div>
-      <div class="row mb-3">
-        <label for="alquiler" class="col-sm-2 col-form-label">Alquiler:</label>
-        <div class="col-sm-3">
-            <input type="text" id="alquiler" v-model="nuevoMantenimiento.alquiler" class="form-control">
-        </div>
-        
+  <Breadcrumbs></Breadcrumbs>
+  <div class="row m-5">
+    <h1 class="text-center">Alta Nuevo Mantenimiento:</h1>
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="mb-0 text-center">Mantenimiento</h3>
       </div>
-      <!-- Otros campos del formulario -->
-      <div class="row mb-5">
-        <button type="submit" class="btn btn-primary col-sm-4">Guardar Mantenimiento</button>
+      <div class="card-body">
+        <form @submit.prevent="submitForm" class="my-5 d-flex justify-content-center align-items-center">
+          <div class="col-md-6">
+            <div class="row mb-3">
+              <label for="fecha" class="col-sm-4 col-form-label">Fecha del Mantenimiento:</label>
+              <div class="col-sm-8">
+                <input type="date" id="fecha" v-model="nuevoMantenimiento.fecha" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="alquiler" class="col-sm-4 col-form-label">Alquiler:</label>
+              <div class="col-sm-8">
+                <input type="number" id="alquiler" v-model="nuevoMantenimiento.alquiler" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="detalle">Detalles del Mantenimiento:</label>
+              <textarea id="detalle" v-model="nuevoMantenimiento.detalle" class="form-control" required></textarea>
+            </div>
+
+            <div class="mt-2 d-flex justify-content-between">
+              <router-link to="/mantenimiento" class="btn btn-secondary">Cancelar</router-link>
+              <button type="submit" class="btn btn-primary col-sm-2">Agregar</button>
+            </div>
+
+          </div>
+        </form>
       </div>
-    </form>
-  </template>
-  
-  <script>
+    </div>
+
+  </div>
+</template>
+
+<script>
+import Breadcrumbs from '../components/Breadcrumbs.vue';
 export default {
   data() {
     return {
       nuevoMantenimiento: {
         fecha: '',
         alquiler: '',
-        // Agrega otros campos del formulario 
-      }
+        detalle: '',
+        // Agrega otros campos del formulario
+      },
     };
+  },
+  components: {
+    Breadcrumbs, // Registra el componente para su uso en esta vista
   },
   methods: {
     submitForm() {
@@ -39,9 +65,10 @@ export default {
       this.nuevoMantenimiento = {
         fecha: '',
         alquiler: '',
+        detalle: '',
         // Restablece otros campos del formulario
       };
-    }
-  }
+    },
+  },
 };
 </script>
