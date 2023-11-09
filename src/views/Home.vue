@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-md-12 hero-background text-center d-flex justify-content-center">
-        <div class="">
+        <div class="bienvenido">
           <h1>¡Bienvenidos!</h1>
           <p>Somos especialistas en plantas de tratamiento de aguas efluentes, mediante la utilización de OZONO (O3).</p>
         </div>
@@ -44,6 +44,15 @@
   justify-content: center;
   color: #ffffff; /* Color de texto en el fondo */
   display: flex;
+}
+.bienvenido {
+  background-color: rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
 }
 /* Otras clases de estilo que necesites */
 </style>

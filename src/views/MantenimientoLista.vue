@@ -1,11 +1,15 @@
 <template>
+  <Breadcrumbs></Breadcrumbs>
   <div class="mantenimiento">
+    <h1 class="text-center">Mantenimientos:</h1>
     <div class="card">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h1 class="mb-0">Mantenimientos</h1>
-        <button class="btn btn-primary">
-          <font-awesome-icon icon="plus" /> Nuevo
-        </button>
+        <h3 class="mb-0">Lista de Mantenimientos</h3>
+        <router-link to="/mantenimiento/alta-mantenimiento">
+          <button class="btn btn-primary">
+            <font-awesome-icon icon="plus" /> Nuevo
+          </button>
+        </router-link>
       </div>
       <table class="table table-striped">
         <thead class="table">
@@ -26,17 +30,9 @@
             <td>{{ mantenimiento.planta }}</td>
             <td>{{ mantenimiento.usuario }}</td>
             <td>
-              <div class="dropdown">
-                <a href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <font-awesome-icon :icon="['fas', 'ellipsis-h']" style="color: black;" />
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#"> <font-awesome-icon :icon="['fas', 'pen']"
-                        style="color: black;" /> Editar</a></li>
-                  <li><a class="dropdown-item" href="#"> <font-awesome-icon :icon="['fas', 'trash']"
-                        style="color: black;" /> Eliminar</a></li>
-                </ul>
-              </div>
+              <button class="btn" @click="eliminar"><font-awesome-icon :icon="['fas', 'eye']" /></button>
+              <button class="btn" @click="editar"><font-awesome-icon :icon="['fas', 'pen']" /></button>
+              <button class="btn" @click="eliminar"><font-awesome-icon :icon="['fas', 'trash']" /></button>
             </td>
 
           </tr>
@@ -50,6 +46,7 @@
   
 <script>
 import Form from '../components/FormMantenimiento.vue'
+import Breadcrumbs from '../components/Breadcrumbs.vue';
 export default {
   data() {
     return {
@@ -88,7 +85,8 @@ export default {
       ],
     };
   }, components: {
-    Form, // Registra el componente para su uso en esta vista
+    Form,
+    Breadcrumbs, // Registra el componente para su uso en esta vista
   },
 };
 </script>
