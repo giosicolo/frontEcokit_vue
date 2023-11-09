@@ -4,6 +4,8 @@ import MantenimientoLista from '../views/MantenimientoLista.vue' // Importa la v
 import Remitos from '../views/Remitos.vue' // Importa la vista Remitos
 import Alquileres from '../views/vista_alta_alquiler.vue'
 import FormMantenimiento from '../components/FormMantenimiento.vue'
+import Login from '../views/Login.vue'
+import store from '../components/store.js'
 const routes = [
   { path: '/', component: Home },
   {
@@ -29,7 +31,24 @@ const routes = [
     name: 'Alquileres',
     component: Alquileres,
     meta: { breadcrumb: 'Alquileres' },
-  }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    meta: { breadcrumb: 'Login' },
+    beforeEnter: (to, from, next) => {
+      // Verifica si el usuario está logeado
+      const usuarioLogeado = store.state.usuarioLogeado;
+      if (usuarioLogeado) {
+        // El usuario ya está logeado, redirige a la página principal
+        next('/');
+      } else {
+        // El usuario no está logeado, permite el acceso a la página de inicio de sesión
+        next();
+      }
+    },
+  },
 ];
 
 const router = createRouter({
