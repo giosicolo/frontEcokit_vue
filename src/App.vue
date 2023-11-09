@@ -24,5 +24,8 @@ export default {
   min-height: 93vh;
   flex-direction: column;
 }
+body {
+  font-family: 'Open Sans', sans-serif;
+}
 
 </style>
