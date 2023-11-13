@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import MainMenu from './components/TheHeader.vue'
-import Footer from './components/TheFooter.vue'
+import MainMenu from './components/generales/TheHeader.vue'
+import Footer from './components/generales/TheFooter.vue'
 import Login from './views/Login.vue'; 
 export default {
   name: 'App',

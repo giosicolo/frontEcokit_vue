@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
+import Home from '../views/Inicio.vue';
 import MantenimientoLista from '../views/MantenimientoLista.vue' // Importa la vista Mantenimiento
 import Remitos from '../views/Remitos.vue' // Importa la vista Remitos
 import Alquileres from '../views/vista_alta_alquiler.vue'
-import FormMantenimiento from '../components/FormMantenimiento.vue'
+import FormMantenimiento from '../components/mantenimientos/FormMantenimiento.vue'
 import Login from '../views/Login.vue'
 import store from '../components/store.js'
 const routes = [
