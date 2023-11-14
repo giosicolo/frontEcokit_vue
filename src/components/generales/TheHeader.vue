@@ -31,9 +31,12 @@
             <li v-if="usuarioLogeado" class="nav-item m-2">
               <button @click="cerrarSesion" class="nav-link m-2" style="color: aliceblue;">Cerrar Sesión</button>
             </li>
-            <li v-if="usuarioLogeado" class="nav-item m-2">
+            <div class="col-md-4 col-12 d-flex flex-column align-items-center justify-content-center">
+            <font-awesome-icon :icon="['fas', 'user']"  class="icon"/>
+            <li v-if="usuarioLogeado" class="nav-item m-1">
               <router-link to="/" class="nav-link m-2" style="color: aliceblue;">{{ usuarioLogeado.usuario }}</router-link>
             </li>
+          </div>
           </div> 
   </nav>
 </template>
@@ -61,5 +64,8 @@ export default {
   /* Cambia el color de fondo del enlace activo */
   color: #fff;
   /* Cambia el color del texto del enlace activo */
+}
+.icon{
+  color: #fff;
 }
 </style>
