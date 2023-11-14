@@ -1,0 +1,136 @@
+<template>
+  <div>
+    <Breadcrumbs></Breadcrumbs>
+    <div class="row m-5">
+      <h1 class="text-center">Alta nuevo Remito</h1>
+      <div class="card p-0">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h3 class="p-0 text-center">Remito</h3>
+        </div>
+        <div class="card-body">
+          <form @submit.prevent="submitForm" class="my-5 d-flex justify-content-center align-items-center">
+            <div class="col-md-6">
+
+              <div class="row mb-3">
+                <label for="alquiler_id" class="col-sm-4 col-form-label">Alquiler en referencia:</label>
+                <div class="col-sm-8">
+                  <select v-model="nuevoRemito.alquiler_id" class="form-control" required>
+                    <option v-for="alquiler in alquileresDisponibles" :key="alquiler.alquiler_id" :value="alquiler.alquiler_id">
+                      {{ alquiler.fecha_inicio }} - {{ alquiler.monto_base }} $
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="row mb-3">
+                <label for="fecha" class="col-sm-4 col-form-label">Fecha del Remito:</label>
+                <div class="col-sm-8">
+                  <input type="date" id="fecha" v-model="nuevoRemito.fecha" class="form-control" required>
+                </div>
+              </div>
+
+
+              <div class="row mb-3">
+                <label for="monto" class="col-sm-4 col-form-label">Monto en $:</label>
+                <div class="col-sm-8">
+                  <input type="number" id="monto" v-model="nuevoRemito.monto" class="form-control" required >
+                </div>
+              </div>
+
+              
+
+              <div class="form-group form-check">
+                <input type="checkbox" id="conformidad" class="form-check-input" v-model="nuevoRemito.conformidad">
+                <label class="form-check-label" for="conformidad">Existe Conformidad</label>
+              </div>
+
+     
+
+              <div class="form-group">
+                <label for="detalle">Detalles del Remito:</label>
+                <input type="text" id="detalle" v-model="nuevoRemito.detalle" class="form-control" required>
+              </div>
+
+              <div class="mt-2 d-flex justify-content-between">
+                <router-link to="/remitos" class="btn btn-secondary">Cancelar</router-link>
+                <button type="submit" class="btn btn-primary">Previsualizar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Breadcrumbs from '../Breadcrumbs.vue';
+
+export default {
+  data() {
+    return {
+      nuevoRemito: {
+        monto: null,
+        conformidad: false,
+        detalle: "",
+        fecha: null,
+        alquiler_id: null,
+        cobro_id: null,
+      },
+      alquileresDisponibles: [],
+    };
+  },
+  components: {
+    Breadcrumbs,
+  },
+  methods: {
+    submitForm() {
+      console.log("Datos del nuevo remito:", this.nuevoRemito);
+
+      fetch('http://localhost:4004/api/remito/registrar_remito', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.nuevoRemito),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Respuesta de la API:', data);
+
+        })
+        .catch(error => console.error('Error al enviar el remito:', error));
+    },
+  },
+
+  created() {
+    // Obtener alquileres disponibles
+    fetch('http://localhost:4004/api/remito/registrar_remito/get_alquileres_vigentes', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+
+        this.alquileresDisponibles = data.data;
+        console.log('Alquileres disponibles:', this.alquileresDisponibles);
+      })
+      .catch(error => console.error('Error al obtener alquileres:', error));
+
+
+  },
+
+
+};
+</script>
+
+<style scoped>
+/* Agrega estilos personalizados para esta vista */
+.container {
+  padding: 20px;
+  margin-top: 10px;
+}
+</style>
