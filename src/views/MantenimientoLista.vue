@@ -30,7 +30,7 @@
             <td>{{ mantenimiento.planta }}</td>
             <td>{{ mantenimiento.usuario }}</td>
             <td>
-              <button class="btn" @click="eliminar"><font-awesome-icon :icon="['fas', 'eye']" /></button>
+              <button class="btn" @click="eliminar"><font-awesome-icon :icon="['fas', 'eye']"  /></button>
               <button class="btn" @click="editar"><font-awesome-icon :icon="['fas', 'pen']" /></button>
               <button class="btn" @click="eliminar"><font-awesome-icon :icon="['fas', 'trash']" /></button>
             </td>
@@ -45,8 +45,8 @@
 
   
 <script>
-import Form from '../components/FormMantenimiento.vue'
-import Breadcrumbs from '../components/Breadcrumbs.vue';
+import Form from '../components/mantenimientos/FormMantenimiento.vue'
+import Breadcrumbs from '../components/generales/Breadcrumbs.vue';
 export default {
   data() {
     return {

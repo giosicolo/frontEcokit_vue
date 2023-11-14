@@ -1,31 +1,48 @@
 <template>
   <div id="app">
-    <MainMenu></MainMenu>
-    <router-view /> <!-- Esta etiqueta muestra la vista correspondiente según la URL -->
-  </div>
+    <MainMenu v-if="usuarioLogeado"></MainMenu>
+    <Login v-if="!usuarioLogeado && $route.path === '/login'" />
+
+    <!-- Muestra el contenido principal solo si el usuario está autenticado -->
+    <router-view v-else-if="usuarioLogeado" />
+
+    <!-- Redirige al usuario a la página de inicio de sesión si no está autenticado -->
+    <Login v-else />
     <Footer></Footer>
+  </div>
 </template>
 
 <script>
-import MainMenu from './components/TheHeader.vue'
-import Footer from './components/TheFooter.vue'
+import MainMenu from './components/generales/TheHeader.vue'
+import Footer from './components/generales/TheFooter.vue'
+import Login from './views/Login.vue'; 
 export default {
   name: 'App',
-  components:{
+  components: {
     MainMenu,
-    Footer
-  }
-}
+    Footer,
+    Login,
+  },
+  computed: {
+    usuarioLogeado() {
+      return this.$store.state.usuarioLogeado;
+    },
+  },
+};
 </script>
 
 <style>
-  #app {
-  background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
-  min-height: 93vh;
+#app {
+  display: flex;
+  background-color: #f8f9fa;
+  min-height: 100vh;
   flex-direction: column;
 }
+#app > :last-child {
+  margin-top: auto; /* Empuja el último elemento hacia abajo, ocupando todo el espacio restante */
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
-
 </style>
