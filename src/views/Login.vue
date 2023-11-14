@@ -2,13 +2,13 @@
 <template>
   <div class="row">
     <div class="col-md-8 hero-background">
-      <img src="@/assets/icon-ecokit.png" alt="Icono Ecokit" class="img-fluid col-md-2" />
+      <img src="@/assets/icon-ecokit.png" alt="Icono Ecokit" class="img-fluid col-md-2 col-sm-2" />
     </div>
 
-    <div class="col-md-4 d-flex align-items-center justify-content-center">
+    <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
       <form @submit.prevent="iniciarSesion" class="col-md-11">
-        <div class="user-icon-container col-md-2 text-center flex-column">
-          <font-awesome-icon :icon="['fas', 'user']" size="3x" />
+        <div class="col-md-12 text-center pb-4">
+          <img class="col-md-2 col-sm-2 ml-4 pt-2" src="src\assets\icon_user.png" alt="logo_user">
         </div>
 
         <div class="col-md-12">
@@ -84,13 +84,4 @@ export default {
   display: flex;
 }
 
-.user-icon-container {
-  background-color: rgba(107, 107, 107, 0.219);
-  /* Ajusta el valor alpha (cuarto valor) para cambiar la transparencia */
-  border-radius: 100%;
-  padding: 20px;
-  margin-left: 40%;
-  /* Hace que el fondo sea circular */
-  /* Ajusta según sea necesario */
-}
 </style>
