@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import Breadcrumbs from '../Breadcrumbs.vue';
+import Breadcrumbs from '../generales/Breadcrumbs.vue';
 
 export default {
   data() {
