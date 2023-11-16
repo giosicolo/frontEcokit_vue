@@ -3,7 +3,8 @@ import Home from '../views/Inicio.vue';
 import MantenimientoLista from '../views/MantenimientoLista.vue' // Importa la vista Mantenimiento
 import Remitos from '../views/remito/Remitos.vue' // Importa la vista Remitos
 import nuevoRemito from '../components/remito/nuevo_remito.vue' // Importa la vista Remitos
-import Alquileres from '../views/vista_alta_alquiler.vue'
+import Alquileres from '../views/alquiler/alquiler.vue' // Importa la vista de alquileres
+import nuevoAlquiler from '../components/alquileres/nuevo_alquiler.vue' // Importa la vista para generar nuevo alquiler
 
 import FormMantenimiento from '../components/mantenimientos/FormMantenimiento.vue'
 import Login from '../views/Login.vue'
@@ -39,6 +40,12 @@ const routes = [
     name: 'Alquileres',
     component: Alquileres,
     meta: { breadcrumb: 'Alquileres' },
+  },
+  {
+    path: '/alquileres/nuevo_alquiler',
+    name: 'nuevoAlquiler',
+    component: nuevoAlquiler,
+    meta: { breadcrumb: 'alquileres/nuevo-alquiler' }
   },
   {
     path: '/login',

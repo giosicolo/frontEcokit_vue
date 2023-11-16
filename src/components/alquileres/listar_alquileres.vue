@@ -2,11 +2,11 @@
   <div>
     <Breadcrumbs></Breadcrumbs>
     <div class="container mt-4">
-      <h1 class="my-4">Listado de Remitos</h1>
+      <h1 class="my-4">Listado de Alquileres</h1>
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h3 class="mb-0">Remitos</h3>
-          <router-link to="/remitos/nuevo_remito">
+          <h3 class="mb-0">Alquileres</h3>
+          <router-link to="/alquileres/nuevo_alquiler">
             <button class="btn btn-primary">
               <font-awesome-icon icon="plus" /> Nuevo
             </button>
@@ -16,24 +16,22 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Monto</th>
-              <th>Conformidad</th>
-              <th>Detalle</th>
-              <th>Fecha</th>
-              <th>Alquiler ID</th>
-              <th>Cobro ID</th>
+              <th>Empresa</th>
+              <th>Monto Base</th>
+              <th>Fecha Inicio</th>
+              <th>Fecha Finalizacion</th>
+              <th>Vendedor</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="remito in remitos" :key="remito.remito_id">
-              <td>{{ remito.remito_id }}</td>
-              <td>{{ remito.monto }}</td>
-              <td>{{ remito.conformidad ? 'Sí' : 'No' }}</td>
-              <td>{{ remito.detalle }}</td>
-              <td>{{ remito.fecha }}</td>
-              <td>{{ remito.alquiler_id }}</td>
-              <td>{{ remito.cobro_id }}</td>
+            <tr v-for="alquiler in alquileres" :key="alquiler.alquiler_id">
+              <td>{{ alquiler.alquiler_id }}</td>
+              <td>{{ alquiler.empresa_id }}</td>
+              <td>{{ "USD " + alquiler.monto_base }}</td>
+              <td>{{ alquiler.fecha_inicio }}</td>
+              <td>{{ alquiler.fecha_fin }}</td>
+              <td>{{ alquiler.vendedor_id }}</td>
               <td>
                 <button class="btn" @click="ver"><font-awesome-icon :icon="['fas', 'eye']" /></button>
                 <button class="btn" @click="editar"><font-awesome-icon :icon="['fas', 'pen']" /></button>
@@ -49,38 +47,38 @@
 
 <script>
 import Breadcrumbs from '../generales/Breadcrumbs.vue';
-import nuevo_remito from './nuevo_remito.vue';
+import nuevo_alquiler from './nuevo_alquiler.vue';
 
 export default {
   data() {
     return {
-      remitos: [],
+      alquileres: [],
     };
   },
   components: {
     Breadcrumbs,
-    nuevo_remito,
+    nuevo_alquiler,
   },
   methods: {
     ver() {
-      // Lógica para ver el detalle del remito
+      // 
     },
     editar() {
-      // Lógica para editar el remito
+      //
     },
     eliminar() {
-      // Lógica para eliminar el remito
+      //
     },
   },
   created() {
-    // Realiza la solicitud HTTP para obtener los remitos desde tu API local
+    // Realiza la solicitud HTTP para obtener los alquileres desde tu API local
     // Asume que la API está en http://localhost:3000/api/remitos
-    fetch('http://localhost:4004/api/remito/all')
+    fetch('http://localhost:4004/api/alquiler')
       .then(response => response.json())
       .then(data => {
-        this.remitos = data.data;
+        this.alquileres = data.data;
       })
-      .catch(error => console.error('Error fetching remitos:', error));
+      .catch(error => console.error('Error fetching alquileres:', error));
   },
 };
 </script>
