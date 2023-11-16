@@ -32,8 +32,8 @@
               <td>{{ remito.conformidad ? 'Sí' : 'No' }}</td>
               <td>{{ remito.detalle }}</td>
               <td>{{ remito.fecha }}</td>
-              <td>{{ remito.alquiler_id }}</td>
-              <td>{{ remito.cobro_id }}</td>
+              <td>Alquiler {{ remito.alquiler_id }}</td>
+              <td>Cobro {{ remito.cobro_id }}</td>
               <td>
                 <button class="btn" @click="ver"><font-awesome-icon :icon="['fas', 'eye']" /></button>
                 <button class="btn" @click="editar"><font-awesome-icon :icon="['fas', 'pen']" /></button>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import Breadcrumbs from '../Breadcrumbs.vue';
+import Breadcrumbs from '../generales/Breadcrumbs.vue';
 import nuevo_remito from './nuevo_remito.vue';
 
 export default {
