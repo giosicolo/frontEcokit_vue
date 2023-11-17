@@ -1,13 +1,17 @@
 <template>
   <div id="app">
     <MainMenu v-if="usuarioLogeado"></MainMenu>
+    <div class="contenido">
     <Login v-if="!usuarioLogeado && $route.path === '/login'" />
-
+    
+      
+    
     <!-- Muestra el contenido principal solo si el usuario está autenticado -->
     <router-view v-else-if="usuarioLogeado" />
 
     <!-- Redirige al usuario a la página de inicio de sesión si no está autenticado -->
     <Login v-else />
+  </div>
     <Footer></Footer>
   </div>
 </template>
@@ -34,7 +38,7 @@ export default {
 <style>
 #app {
   display: flex;
-  background-color: #f8f9fa;
+  background-color: #f2f2f2;
   min-height: 100vh;
   flex-direction: column;
 }
@@ -44,5 +48,8 @@ export default {
 
 body {
   font-family: 'Open Sans', sans-serif;
+}
+.contenido{
+  margin-top: 60px;
 }
 </style>
