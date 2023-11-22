@@ -15,19 +15,17 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Monto</th>
               <th>Conformidad</th>
               <th>Detalle</th>
               <th>Fecha</th>
-              <th>Alquiler ID</th>
-              <th>Cobro ID</th>
+              <th>Alquiler</th>
+              <th>Cobro</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="remito in remitos" :key="remito.remito_id">
-              <td>{{ remito.remito_id }}</td>
               <td>{{ remito.monto }}</td>
               <td>{{ remito.conformidad ? 'Sí' : 'No' }}</td>
               <td>{{ remito.detalle }}</td>
@@ -35,9 +33,12 @@
               <td>Alquiler {{ remito.alquiler_id }}</td>
               <td>Cobro {{ remito.cobro_id }}</td>
               <td>
-                <button class="btn" @click="ver"><font-awesome-icon :icon="['fas', 'eye']" /></button>
+                <router-link :to="'/remitos/' + remito.remito_id">
+                  <button class="btn" ><font-awesome-icon :icon="['fas', 'eye']" /></button>
+                </router-link>
+
                 <button class="btn" @click="editar"><font-awesome-icon :icon="['fas', 'pen']" /></button>
-                <button class="btn" @click="eliminar"><font-awesome-icon :icon="['fas', 'trash']" /></button>
+                <button class="btn" @click="eliminar(remito)"><font-awesome-icon :icon="['fas', 'trash']" /></button>
               </td>
             </tr>
           </tbody>
@@ -50,6 +51,7 @@
 <script>
 import Breadcrumbs from '../generales/Breadcrumbs.vue';
 import nuevo_remito from './nuevo_remito.vue';
+import axios from 'axios';
 
 export default {
   data() {
@@ -68,8 +70,18 @@ export default {
     editar() {
       // Lógica para editar el remito
     },
-    eliminar() {
+    eliminar(remito) {
       // Lógica para eliminar el remito
+
+      //confirmacion
+      if (!confirm('¿Está seguro que desea eliminar el remito?')) {
+        return;
+      }
+
+      axios.delete(`http://localhost:4004/api/remito/${remito.remito_id}`);
+      this.remitos = this.remitos.filter(r => r.remito_id !== remito.remito_id);
+
+
     },
   },
   created() {
@@ -79,6 +91,7 @@ export default {
       .then(response => response.json())
       .then(data => {
         this.remitos = data.data;
+        console.log('Remitos:', this.remitos);
       })
       .catch(error => console.error('Error fetching remitos:', error));
   },

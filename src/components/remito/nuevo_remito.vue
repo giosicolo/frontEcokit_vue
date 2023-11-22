@@ -8,14 +8,16 @@
           <h3 class="p-0 text-center">Remito</h3>
         </div>
         <div class="card-body">
-          <form @submit.prevent="submitForm" class="my-5 d-flex justify-content-center align-items-center">
+          <form v-if="!previsualizar" @submit.prevent="submitForm"
+            class="my-5 d-flex justify-content-center align-items-center">
             <div class="col-md-6">
 
               <div class="row mb-3">
                 <label for="alquiler_id" class="col-sm-4 col-form-label">Alquiler en referencia:</label>
                 <div class="col-sm-8">
                   <select v-model="nuevoRemito.alquiler_id" class="form-control" required>
-                    <option v-for="alquiler in alquileresDisponibles" :key="alquiler.alquiler_id" :value="alquiler.alquiler_id">
+                    <option v-for="alquiler in alquileresDisponibles" :key="alquiler.alquiler_id"
+                      :value="alquiler.alquiler_id">
                       {{ alquiler.fecha_inicio }} - {{ alquiler.monto_base }} $
                     </option>
                   </select>
@@ -34,18 +36,18 @@
               <div class="row mb-3">
                 <label for="monto" class="col-sm-4 col-form-label">Monto en $:</label>
                 <div class="col-sm-8">
-                  <input type="number" id="monto" v-model="nuevoRemito.monto" class="form-control" required >
+                  <input type="number" id="monto" v-model="nuevoRemito.monto" class="form-control" required>
                 </div>
               </div>
 
-              
+
 
               <div class="form-group form-check">
                 <input type="checkbox" id="conformidad" class="form-check-input" v-model="nuevoRemito.conformidad">
                 <label class="form-check-label" for="conformidad">Existe Conformidad</label>
               </div>
 
-     
+
 
               <div class="form-group">
                 <label for="detalle">Detalles del Remito:</label>
@@ -54,10 +56,29 @@
 
               <div class="mt-2 d-flex justify-content-between">
                 <router-link to="/remitos" class="btn btn-secondary">Cancelar</router-link>
-                <button type="submit" class="btn btn-primary">Previsualizar</button>
+                <button @click="mostrarPrevisualizacion" type="submit" class="btn btn-primary">Previsualizar</button>
               </div>
             </div>
           </form>
+
+          <!-- Vista de previsualización -->
+          <div v-if="previsualizar">
+            <h3>Previsualización</h3>
+            <p><strong>Alquiler en referencia:</strong> {{ alquilerSeleccionado.fecha_inicio }} - {{
+              alquilerSeleccionado.monto_base }} $</p>
+            <p><strong>Fecha del Remito:</strong> {{ nuevoRemito.fecha }}</p>
+            <p><strong>Monto en $:</strong> {{ nuevoRemito.monto }}</p>
+            <p><strong>Existe Conformidad:</strong> {{ nuevoRemito.conformidad ? 'Sí' : 'No' }}</p>
+            <p><strong>Detalles del Remito:</strong> {{ nuevoRemito.detalle }}</p>
+
+            <div class="mt-2 d-flex justify-content-between">
+              <button type="button" class="btn btn-secondary" @click="ocultarPrevisualizacion">Editar</button>
+              <button type="button" class="btn btn-primary" @click="guardarRemito">Guardar</button>
+            </div>
+          </div>
+
+
+
         </div>
       </div>
     </div>
@@ -79,6 +100,8 @@ export default {
         cobro_id: null,
       },
       alquileresDisponibles: [],
+      previsualizar: false,
+      alquilerSeleccionado: null,
     };
   },
   components: {
@@ -101,6 +124,40 @@ export default {
 
         })
         .catch(error => console.error('Error al enviar el remito:', error));
+    },
+    mostrarPrevisualizacion() {
+      this.previsualizar = true;
+      // Obtener los detalles del alquiler seleccionado para mostrar en la previsualización
+      this.alquilerSeleccionado = this.alquileresDisponibles.find(alquiler => alquiler.alquiler_id === this.nuevoRemito.alquiler_id);
+    },
+    ocultarPrevisualizacion() {
+      this.previsualizar = false;
+    },
+    guardarRemito() {
+      console.log("Datos del nuevo remito:", this.nuevoRemito);
+
+      fetch('http://localhost:4004/api/remito/registrar_remito', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.nuevoRemito),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Respuesta de la API:', data);
+
+          if(data.status === 'OK') {
+            alert('El remito se guardó correctamente');
+
+            this.$router.go(-2);
+
+          } else {
+            alert('Hubo un error al guardar el remito');
+          }
+
+        })
+        .catch(error => console.error('Error al enviar el remito:', error)); this.ocultarPrevisualizacion();
     },
   },
 
@@ -132,5 +189,4 @@ export default {
 .container {
   padding: 20px;
   margin-top: 10px;
-}
-</style>
+}</style>
