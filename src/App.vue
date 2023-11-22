@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <MainMenu v-if="usuarioLogeado"></MainMenu>
-    <Login v-if="!usuarioLogeado && $route.path === '/login'" />
+    <MainMenu v-if="usuarioLogeado" class="MainMenu"></MainMenu>
+    <Login v-if="!usuarioLogeado" />
+    <div v-if="usuarioLogeado" class="contenido">
 
-    <!-- Muestra el contenido principal solo si el usuario está autenticado -->
-    <router-view v-else-if="usuarioLogeado" />
+      <div>
+        <!-- Muestra el contenido principal solo si el usuario está autenticado -->
+        <router-view v-if="usuarioLogeado" />
+      </div>
 
-    <!-- Redirige al usuario a la página de inicio de sesión si no está autenticado -->
-    <Login v-else />
+
+    </div>
     <Footer></Footer>
   </div>
 </template>
@@ -15,7 +18,7 @@
 <script>
 import MainMenu from './components/generales/TheHeader.vue'
 import Footer from './components/generales/TheFooter.vue'
-import Login from './views/Login.vue'; 
+import Login from './views/Login.vue';
 export default {
   name: 'App',
   components: {
@@ -34,15 +37,28 @@ export default {
 <style>
 #app {
   display: flex;
-  background-color: #f8f9fa;
+  background-color: #f2f2f2;
   min-height: 100vh;
   flex-direction: column;
 }
-#app > :last-child {
-  margin-top: auto; /* Empuja el último elemento hacia abajo, ocupando todo el espacio restante */
+
+#app> :last-child {
+  margin-top: auto;
+  /* Empuja el último elemento hacia abajo, ocupando todo el espacio restante */
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
+}
+
+.contenido {
+  margin-top: 60px;
+}
+.MainMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que MainMenu tenga un z-index mayor */
 }
 </style>

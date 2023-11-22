@@ -1,8 +1,9 @@
 <template>
   <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
     <div class="container">
-      <router-link to="/" class=""><img src="src\assets\logoEcokitBlanco.png" alt="Logo" width="150"
-          height="40"></router-link>
+      <router-link to="/" class="navbar-brand">
+        <img src="src\assets\logoEcokitBlanco.png" alt="Logo" width="150" height="40">
+      </router-link>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,34 +11,39 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <router-link to="/" class="nav-link">Inicio</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/mantenimiento" class="nav-link nav-link-active">Mantenimientos</router-link>
+            <router-link to="/mantenimiento" class="nav-link">Mantenimientos</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/alquileres" class="nav-link nav-link-active">Alquileres</router-link>
+            <router-link to="/alquileres" class="nav-link">Alquileres</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/remitos" class="nav-link nav-link-active">Remitos</router-link>
+            <router-link to="/remitos" class="nav-link">Remitos</router-link>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" @click="scrollToElement">Nosotros</button>
           </li>
         </ul>
       </div>
+
+      <div class="d-flex align-items-center">
+        <div v-if="usuarioLogeado" class="nav-item">
+          <button @click="cerrarSesion" class="btn btn-link text-white">Cerrar Sesión</button>
+        </div>
+
+        <div v-if="usuarioLogeado" class="nav-item">
+          <router-link to="/" class="nav-link" style="color: aliceblue;">{{ usuarioLogeado.usuario }}</router-link>
+        </div>
+
+        <div class="nav-item">
+          <font-awesome-icon :icon="['fas', 'user']" class="text-white p-2" />
+        </div>
+      </div>
     </div>
-    <div class="d-flex align-items-right">
-            <!-- Agregar enlace para cerrar sesión si está logeado -->
-            <li v-if="usuarioLogeado" class="nav-item m-2">
-              <button @click="cerrarSesion" class="nav-link m-2" style="color: aliceblue;">Cerrar Sesión</button>
-            </li>
-            <div class="col-md-4 col-12 d-flex flex-column align-items-center justify-content-center">
-            <font-awesome-icon :icon="['fas', 'user']"  class="icon"/>
-            <li v-if="usuarioLogeado" class="nav-item m-1">
-              <router-link to="/" class="nav-link m-2" style="color: aliceblue;">{{ usuarioLogeado.usuario }}</router-link>
-            </li>
-          </div>
-          </div> 
   </nav>
 </template>
 
@@ -55,6 +61,15 @@ export default {
       // Puedes redirigir a la página de inicio o a donde prefieras después de cerrar sesión
       this.$router.push('/');
     },
+    scrollToElement() {
+      // Acceder al elemento al que quieres hacer scroll usando su ID
+      const element = document.getElementById('quienes-somos');
+
+      // Hacer scroll suavemente hasta el elemento
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   },
 };
 </script>

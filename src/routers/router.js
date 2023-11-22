@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Inicio.vue';
-import MantenimientoLista from '../views/MantenimientoLista.vue' // Importa la vista Mantenimiento
+import MantenimientoLista from '../views/mantenimiento/mantenimiento.vue' // Importa la vista Mantenimiento
 import Remitos from '../views/remito/Remitos.vue' // Importa la vista Remitos
 import nuevoRemito from '../components/remito/nuevo_remito.vue' // Importa la vista Remitos
 import verRemito from '../components/remito/ver_remito.vue' // Importa la vista Remitos
