@@ -5,30 +5,30 @@
       <img src="@/assets/icon-ecokit.png" alt="Icono Ecokit" class="img-fluid col-md-2 col-sm-2" />
     </div>
 
-    <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
-      <form @submit.prevent="iniciarSesion" class="col-md-11">
-        <div class="col-md-12 text-center pb-4">
-          <img class="col-md-2 col-sm-2 ml-4 pt-2" src="src\assets\icon_user.png" alt="logo_user">
-        </div>
+      <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
+        <form @submit.prevent="iniciarSesion" class="col-md-11 form-login">
+          <div class="col-md-12 text-center pb-4">
+            <img class="col-md-2 col-sm-2 ml-4 pt-2" src="src\assets\icon_user.png" alt="logo_user">
+          </div>
 
-        <div class="col-md-12">
-          <label for="usuario" class="form-label">Usuario:</label>
-          <input v-model="credenciales.usuario" type="text" class="form-control" id="usuario"
-            aria-describedby="usuarioAyuda" required>
-          <div id="usuarioAyuda" class="form-text">Sus credenciales están seguras</div>
-        </div>
+          <div class="col-md-12">
+            <label for="usuario" class="form-label">Usuario:</label>
+            <input v-model="credenciales.usuario" type="text" class="form-control" id="usuario"
+              aria-describedby="usuarioAyuda" required>
+            <div id="usuarioAyuda" class="form-text">Sus credenciales están seguras</div>
+          </div>
 
-        <div class="mb-3">
-          <label for="contrasena" class="form-label">Contraseña</label>
-          <input v-model="credenciales.contrasena" type="password" class="form-control" id="contrasena" required>
-        </div>
+          <div class="mb-3">
+            <label for="contrasena" class="form-label">Contraseña</label>
+            <input v-model="credenciales.contrasena" type="password" class="form-control" id="contrasena" required>
+          </div>
 
-        <button type="submit" class="btn btn-primary">Entrar</button>
-        <div v-if="alerta" class="alert alert-danger m-1" role="alert">
-        {{ alerta }}
+          <button type="submit" class="btn btn-primary">Entrar</button>
+          <div v-if="alerta" class="alert alert-danger m-1" role="alert">
+          {{ alerta }}
+        </div>
+        </form>
       </div>
-      </form>
-    </div>
 
 
 
@@ -82,6 +82,13 @@ export default {
   color: #ffffff;
   /* Color de texto en el fondo */
   display: flex;
+  padding: 20px;
+}
+.form-login{
+  padding: 20px;
+  background-color: #ffffff63;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
 </style>

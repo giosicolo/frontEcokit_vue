@@ -24,6 +24,9 @@
           <li class="nav-item">
             <router-link to="/remitos" class="nav-link">Remitos</router-link>
           </li>
+          <li class="nav-item">
+            <button class="nav-link" @click="scrollToElement">Nosotros</button>
+          </li>
         </ul>
       </div>
 
@@ -58,6 +61,15 @@ export default {
       // Puedes redirigir a la página de inicio o a donde prefieras después de cerrar sesión
       this.$router.push('/');
     },
+    scrollToElement() {
+      // Acceder al elemento al que quieres hacer scroll usando su ID
+      const element = document.getElementById('quienes-somos');
+
+      // Hacer scroll suavemente hasta el elemento
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   },
 };
 </script>
@@ -70,9 +82,5 @@ export default {
 }
 .icon{
   color: #fff;
-}
-.navbar {
-  position: fixed;
-  width: 100%; /* Ajusta el valor si hay superposición con otros elementos */
 }
 </style>
