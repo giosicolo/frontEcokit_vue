@@ -6,7 +6,10 @@
       <h1>Alta Nuevo Alquiler</h1>
       <div class="card p-0">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h3 class="p-0 text-center">Datos Alquiler</h3>
+          <h3 class="p-0 text-center">
+            <font-awesome-icon icon="newspaper" />
+            Datos Alquiler
+          </h3>
         </div>
         <div class="card-body">
           <form @submit.prevent="submitForm" class="my-5 d-flex justify-content-center align-items-center">

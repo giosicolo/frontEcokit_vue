@@ -5,7 +5,10 @@
       <h1 class="my-4">Alquileres</h1>
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h3 class="mb-0">Listado de Alquileres actuales</h3>
+          <h3 class="mb-0">
+            <font-awesome-icon icon="list" />
+            Listado de Alquileres actuales
+          </h3>
           <router-link to="/alquileres/nuevo_alquiler">
             <button class="btn btn-primary">
               <font-awesome-icon icon="plus" /> Nuevo

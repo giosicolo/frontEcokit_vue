@@ -13,7 +13,10 @@
 
     <div class="card">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="mb-0">Listado de mantenimientos actuales</h3>
+        <h3 class="mb-0">
+          <font-awesome-icon icon="list" />
+          Listado de mantenimientos actuales
+        </h3>
         <router-link to="/mantenimiento/alta-mantenimiento">
           <button class="btn btn-primary">
             <font-awesome-icon icon="plus" /> Nuevo
