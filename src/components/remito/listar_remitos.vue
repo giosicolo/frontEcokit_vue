@@ -19,23 +19,23 @@
           <thead>
             <tr>
               <th>Monto</th> 
-              <th>Conformidad</th>
-              <th>Detalle</th>
+              <th class="d-none d-sm-table-cell">Conformidad</th>
+              <th class="d-none d-sm-table-cell">Detalle</th>
               <th>Fecha</th>
-              <th>Alquiler</th>
-              <th>Cobro</th>
+              <th class="d-none d-sm-table-cell">Alquiler</th>
+              <th class="d-none d-sm-table-cell">Cobro</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="remito in paginatedRemito" :key="remito.id">
               <td>USD {{ remito.monto }}</td>
-              <td>{{ remito.conformidad ? 'Sí' : 'No' }}</td>
-              <td>{{ remito.detalle }}</td>
+              <td class="d-none d-sm-table-cell">{{ remito.conformidad ? 'Sí' : 'No' }}</td>
+              <td class="d-none d-sm-table-cell">{{ remito.detalle }}</td>
               <td>{{ remito.fecha }}</td>
-              <td>Alquiler {{ remito.alquiler_id }}</td>
+              <td class="d-none d-sm-table-cell">Alquiler {{ remito.alquiler_id }}</td>
               
-              <td> {{ remito.cobro_id }}</td>
+              <td class="d-none d-sm-table-cell"> {{ remito.cobro_id }}</td>
               <td>
                 <router-link :to="'/remitos/' + remito.remito_id">
                   <button class="btn" ><font-awesome-icon :icon="['fas', 'eye']" /></button>

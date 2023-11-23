@@ -16,25 +16,25 @@
           </router-link>
         </div>
         <table class="table table-striped">
-          <thead>
+          <thead class="table">
             <tr>
-              <th>ID</th>
+              <th class="d-none d-sm-table-cell">ID</th>
               <th>Empresa</th>
               <th>Monto Base</th>
               <th>Fecha Inicio</th>
               <th>Fecha Finalizacion</th>
-              <th>Vendedor</th>
+              <th class="d-none d-sm-table-cell">Vendedor</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="alquiler in paginatedAlquileres" :key="alquiler.id">
-              <td>{{ alquiler.alquiler_id }}</td>
+              <td class="d-none d-sm-table-cell">{{ alquiler.alquiler_id }}</td>
               <td>{{ alquiler.empresa_id }}</td>
               <td>{{ "USD " + alquiler.monto_base }}</td>
               <td>{{ alquiler.fecha_inicio }}</td>
               <td>{{ alquiler.fecha_fin }}</td>
-              <td>{{ alquiler.vendedor_id }}</td>
+              <td class="d-none d-sm-table-cell">{{ alquiler.vendedor_id }}</td>
               <td>
                 <button class="btn" @click="ver"><font-awesome-icon :icon="['fas', 'eye']" /></button>
                 <button class="btn" @click="editar"><font-awesome-icon :icon="['fas', 'pen']" /></button>

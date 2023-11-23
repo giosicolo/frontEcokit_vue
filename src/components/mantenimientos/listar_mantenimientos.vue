@@ -26,9 +26,8 @@
       <table class="table table-striped">
         <thead class="table">
           <tr>
-            <th>Fecha</th>
+            <th class="d-none d-sm-table-cell">Fecha</th>
             <th>Alquiler</th>
-            <th>Descripción</th>
             <th>Planta</th>
             <th>Usuario</th>
             <th>Acciones</th> <!-- Columna de acciones -->
@@ -36,9 +35,8 @@
         </thead>
         <tbody>
           <tr v-for="mantenimiento in paginatedMantenimientos" :key="mantenimiento.id">
-            <td>{{ mantenimiento.fecha }}</td>
+            <td class="d-none d-sm-table-cell">{{ mantenimiento.fecha }}</td>
             <td>{{ mantenimiento.alquiler }}</td>
-            <td>{{ mantenimiento.tipoMantenimiento }}</td>
             <td>{{ mantenimiento.planta }}</td>
             <td>{{ mantenimiento.usuario }}</td>
             <td>
