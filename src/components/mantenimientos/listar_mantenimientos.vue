@@ -75,7 +75,7 @@ export default {
     return {
       filtro: '',
       mantenimientos: [],
-      elementosPorPagina: 2,
+      elementosPorPagina: 8,
       paginaActual: 1,
     };
   },

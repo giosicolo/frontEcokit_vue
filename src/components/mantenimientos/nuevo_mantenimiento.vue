@@ -38,8 +38,8 @@
               <label for="planta" class="col-sm-4 col-form-label">Planta:</label>
               <div class="col-sm-8">
                 <select id="planta" v-model="nuevoMantenimiento.planta" class="form-control" required>
-                  <option value="planta1">Planta 1</option>
-                  <option value="planta2">Planta 2</option>
+                  <option value="Planta 1">Planta 1</option>
+                  <option value="Planta 2">Planta 2</option>
                   <!-- Agrega más opciones según sea necesario -->
                 </select>
               </div>
@@ -50,8 +50,8 @@
               <label for="usuario" class="col-sm-4 col-form-label">Usuario:</label>
               <div class="col-sm-8">
                 <select id="usuario" v-model="nuevoMantenimiento.usuario" class="form-control" required>
-                  <option value="usuario1">Usuario 1</option>
-                  <option value="usuario2">Usuario 2</option>
+                  <option value="Usuario 1">Usuario 1</option>
+                  <option value="Usuario 2">Usuario 2</option>
                   <!-- Agrega más opciones según sea necesario -->
                 </select>
               </div>
