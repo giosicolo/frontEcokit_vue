@@ -9,6 +9,7 @@ import Alquileres from '../views/alquiler/alquiler.vue' // Importa la vista de a
 import nuevoAlquiler from '../components/alquileres/nuevo_alquiler.vue' // Importa la vista para generar nuevo alquiler
 
 import FormMantenimiento from '../components/mantenimientos/nuevo_mantenimiento.vue'
+import verMantenimiento from '../components/mantenimientos/ver_mantenimiento.vue'
 import Login from '../views/Login.vue'
 import store from '../components/store.js'
 const routes = [
@@ -24,6 +25,12 @@ const routes = [
     name: 'FormMantenimiento',
     component: FormMantenimiento,
     meta: { breadcrumb: 'mantenimiento/alta-mantenimiento' },
+  },
+  {
+    path: '/mantenimiento/:mant_id',
+    name: 'verMantenimiento',
+    component: verMantenimiento,
+    meta: { breadcrumb: 'MantenimientoLista/ver-mantenimiento' }
   },
   {
     path: '/remitos',

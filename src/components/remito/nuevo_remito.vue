@@ -150,13 +150,15 @@ export default {
         .then(data => {
           console.log('Respuesta de la API:', data);
 
-          if(data.status === 'OK') {
-            alert('El remito se guardó correctamente');
-
-            this.$router.go(-2);
-
+          if (data && data.data && data.data.remito_id) {
+            const remitoId = data.data.remito_id;
+            alert(`El remito se creó correctamente con el ID: ${remitoId}`);
+            setTimeout(() => {
+              this.$router.push('/remitos');
+            }, 1000);
           } else {
-            alert('Hubo un error al guardar el remito');
+            alert('Hubo un problema al crear el remito');
+            // Otra lógica si la creación del remito falla
           }
 
         })
@@ -192,4 +194,5 @@ export default {
 .container {
   padding: 20px;
   margin-top: 10px;
-}</style>
+}
+</style>

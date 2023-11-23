@@ -42,7 +42,7 @@
             <td>{{ mantenimiento.planta }}</td>
             <td>{{ mantenimiento.usuario }}</td>
             <td>
-              <router-link :to="'/mantenimiento/ver/' + mantenimiento.id">
+              <router-link :to="'/mantenimiento/' + mantenimiento.id">
                 <button class="btn"><font-awesome-icon :icon="['fas', 'eye']" /></button>
               </router-link>
               <router-link :to="'/mantenimiento/editar/' + mantenimiento.id">
@@ -75,7 +75,7 @@ export default {
     return {
       filtro: '',
       mantenimientos: [],
-      elementosPorPagina: 7,
+      elementosPorPagina: 2,
       paginaActual: 1,
     };
   },
