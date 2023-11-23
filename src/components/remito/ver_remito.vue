@@ -21,11 +21,11 @@
             <dt class="col-sm-3">Fecha:</dt>
             <dd class="col-sm-9">{{ remito.fecha }}</dd>
 
-            <dt class="col-sm-3">Alquiler ID:</dt>
-            <dd class="col-sm-9">{{ remito.alquiler_id }}</dd>
+            <dt class="col-sm-3">Alquiler:</dt>
+            <dd class="col-sm-9">Alquiler {{ remito.alquiler_id }}</dd>
 
-            <dt class="col-sm-3">Cobro ID:</dt>
-            <dd class="col-sm-9">{{ remito.cobro_id }}</dd>
+            <dt class="col-sm-3">Cobro:</dt>
+            <dd class="col-sm-9">Cobro {{ remito.cobro_id }}</dd>
           </dl>
 
           <qrcode-vue :value="generarTextoQR()" />
