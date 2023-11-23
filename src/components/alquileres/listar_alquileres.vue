@@ -1,11 +1,14 @@
 <template>
   <div>
     <Breadcrumbs></Breadcrumbs>
-    <div class="container mt-4">
-      <h1 class="my-4">Listado de Alquileres</h1>
+    <div class="contenedor mt-4">
+      <h1 class="my-4">Alquileres</h1>
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h3 class="mb-0">Alquileres</h3>
+          <h3 class="mb-0">
+            <font-awesome-icon icon="list" />
+            Listado de Alquileres actuales
+          </h3>
           <router-link to="/alquileres/nuevo_alquiler">
             <button class="btn btn-primary">
               <font-awesome-icon icon="plus" /> Nuevo
@@ -85,8 +88,11 @@ export default {
 
 <style scoped>
 /* Agrega estilos personalizados para esta vista */
-.container {
+.contenedor {
   padding: 20px;
   margin-top: 10px;
+}
+.card {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 </style>

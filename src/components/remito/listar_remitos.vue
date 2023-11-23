@@ -1,11 +1,14 @@
 <template>
   <div>
     <Breadcrumbs></Breadcrumbs>
-    <div class="container mt-4">
-      <h1 class="my-4">Listado de Remitos</h1>
+    <div class="contenedor mt-4">
+      <h1 class="my-4">Remitos</h1>
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h3 class="mb-0">Remitos</h3>
+          <h3 class="mb-0">
+            <font-awesome-icon icon="list" />
+            Listado de Remitos actuales
+          </h3>
           <router-link to="/remitos/nuevo_remito">
             <button class="btn btn-primary">
               <font-awesome-icon icon="plus" /> Nuevo
@@ -100,7 +103,7 @@ export default {
 
 <style scoped>
 /* Agrega estilos personalizados para esta vista */
-.container {
+.contenedor {
   padding: 20px;
   margin-top: 10px;
 }

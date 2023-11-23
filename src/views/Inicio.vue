@@ -23,28 +23,28 @@
             <div class="col-lg-2 col-md-6 col-sm-6 my-5">
               <div class="custom text-center bg-light">
                 <font-awesome-icon icon="gears" class="fa-3x p-2" />
-                <h2 class="pt-2">Servicio/Calidad</h2>
+                <h3 class="pt-2">Servicio/Calidad</h3>
                 <p>Brindamos servicio en todos los yacimientos de la cuenca</p>
               </div>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6 my-5">
               <div class="custom text-center bg-light">
                 <font-awesome-icon icon="truck-front" class="fa-3x p-2" />
-                <h2 class="pt-2">Transporte propio</h2>
+                <h3 class="pt-2">Transporte propio</h3>
                 <p>Contamos con flota equipada para el servicio</p>
               </div>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6 my-5">
               <div class="custom text-center bg-light">
                 <font-awesome-icon icon="user-tie" class="fa-3x p-2" />
-                <h2 class="pt-2">Profesionales</h2>
+                <h3 class="pt-2">Profesionales</h3>
                 <p>Personal capacitado en el gremio petrolero.</p>
               </div>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6 my-5">
               <div class="custom text-center bg-light">
                 <font-awesome-icon icon="tower-observation" class="fa-3x p-2" />
-                <h2 class="pt-2">Nuestra base</h2>
+                <h3 class="pt-2">Nuestra base</h3>
                 <p>Base operativa propia en Neuquén y en Añelo.</p>
               </div>
             </div>
@@ -104,6 +104,6 @@
 .custom {
   border: 0.5px solid #d2d2d2;
   border-radius: 0.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 </style>
