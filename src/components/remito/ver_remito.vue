@@ -27,11 +27,17 @@
               <dt class="col-sm-3">Cobro ID:</dt>
               <dd class="col-sm-9">{{ remito.cobro_id }}</dd>
             </dl>
+
+            <qrcode-vue :value="generarTextoQR()" />
+
             <div class="mt-2">
               <router-link to="/remitos">
                 <button class="btn btn-secondary">Atrás</button>
               </router-link>
             </div>
+
+
+
           </div>
         </div>
       </div>
@@ -41,12 +47,14 @@
   <script>
   import Breadcrumbs from '../generales/Breadcrumbs.vue';
   import axios from 'axios';
+  import QrcodeVue from 'qrcode.vue';
 
 
   export default {
   
     components: {
       Breadcrumbs,
+      QrcodeVue,
     },
     created() {
         //obtener el id del remito de la URL
@@ -59,13 +67,24 @@
             console.log("Datos del remito:", this.remito);
 
           })
-          .catch((error) => console.log(error));    },
+          .catch((error) => console.log(error));    
+        },
     data() {
       return {
         remito: {},
         remito_id: null,
       };
-    }
+    },
+    methods: {
+      generarTextoQR() {
+        return `Monto: ${this.remito.monto}
+        Conformidad: ${this.remito.conformidad ? 'Sí' : 'No'}
+        Detalle: ${this.remito.detalle}
+        Fecha: ${this.remito.fecha}
+        Alquiler ID: ${this.remito.alquiler_id}
+        Cobro ID: ${this.remito.cobro_id}`;
+      },
+    },
   };
   </script>
   
@@ -75,5 +94,9 @@
     padding: 20px;
     margin-top: 10px;
   }
+
+  .qrcode {
+  margin-top: 20px;
+}
   </style>
   
