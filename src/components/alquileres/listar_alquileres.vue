@@ -38,7 +38,7 @@
               <td>
                 <button class="btn" @click="ver"><font-awesome-icon :icon="['fas', 'eye']" /></button>
                 <button class="btn" @click="editar"><font-awesome-icon :icon="['fas', 'pen']" /></button>
-                <button class="btn" @click="eliminar"><font-awesome-icon :icon="['fas', 'trash']" /></button>
+                <button class="btn" @click="eliminar(alquiler.alquiler_id)"><font-awesome-icon :icon="['fas', 'trash']" /></button>
               </td>
             </tr>
           </tbody>
@@ -69,8 +69,21 @@ export default {
     editar() {
       //
     },
-    eliminar() {
-      //
+    eliminar(alquilerId) {
+
+      if (confirm('¿Estás seguro de que deseas eliminar este alquiler?')) {
+
+        fetch(`http://localhost:4004/api/alquiler/${alquilerId}`, {
+          method: 'DELETE',
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Error al eliminar el alquiler');
+            }
+            this.obtenerAlquileres();
+          })
+          .catch(error => console.error('Error al eliminar el alquiler:', error));
+      }
     },
   },
   created() {
