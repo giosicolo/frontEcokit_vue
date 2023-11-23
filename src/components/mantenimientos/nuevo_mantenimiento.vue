@@ -59,7 +59,7 @@
 
             <div class="form-group">
               <!-- Cambiado el nombre del campo "Detalle" a "tipoMantenimiento" -->
-              <label for="tipoMantenimiento">Tipo de Mantenimiento:</label>
+              <label for="tipoMantenimiento">Detalle mantenimiento:</label>
               <textarea id="tipoMantenimiento" v-model="nuevoMantenimiento.tipoMantenimiento" class="form-control" required></textarea>
             </div>
 
