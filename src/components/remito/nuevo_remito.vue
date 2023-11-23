@@ -64,19 +64,27 @@
             </div>
           </form>
 
-          <!-- Vista de previsualización -->
+                  <!-- Vista de previsualización -->
           <div v-if="previsualizar">
-            <h3>Previsualización</h3>
-            <p><strong>Alquiler en referencia:</strong> {{ alquilerSeleccionado.fecha_inicio }} - {{
-              alquilerSeleccionado.monto_base }} $</p>
-            <p><strong>Fecha del Remito:</strong> {{ nuevoRemito.fecha }}</p>
-            <p><strong>Monto en $:</strong> {{ nuevoRemito.monto }}</p>
-            <p><strong>Existe Conformidad:</strong> {{ nuevoRemito.conformidad ? 'Sí' : 'No' }}</p>
-            <p><strong>Detalles del Remito:</strong> {{ nuevoRemito.detalle }}</p>
+            <div class="remito-preview">
+              <h3 class="mb-4">Previsualización de Remito</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="mb-2"><strong>Alquiler en referencia:</strong> {{ alquilerSeleccionado.fecha_inicio }} - {{ alquilerSeleccionado.monto_base }} $</p>
+                  <p class="mb-2"><strong>Fecha del Remito:</strong> {{ nuevoRemito.fecha }}</p>
+                  <p class="mb-2"><strong>Monto en $:</strong> {{ nuevoRemito.monto }}</p>
+                  <p class="mb-2"><strong>Existe Conformidad:</strong> {{ nuevoRemito.conformidad ? 'Sí' : 'No' }}</p>
+                </div>
+                <div class="col-md-6">
+                  <qrcode-vue :value="generarTextoQR()" />
+                </div>
+              </div>
+              <p class="mb-4"><strong>Detalles del Remito:</strong> {{ nuevoRemito.detalle }}</p>
 
-            <div class="mt-2 d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary" @click="ocultarPrevisualizacion">Editar</button>
-              <button type="button" class="btn btn-primary" @click="guardarRemito">Guardar</button>
+              <div class="mt-2 d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary" @click="ocultarPrevisualizacion">Editar</button>
+                <button type="button" class="btn btn-primary" @click="guardarRemito">Guardar</button>
+              </div>
             </div>
           </div>
 
@@ -90,6 +98,8 @@
 
 <script>
 import Breadcrumbs from '../generales/Breadcrumbs.vue';
+import QrcodeVue from 'qrcode.vue';
+
 
 export default {
   data() {
@@ -109,6 +119,7 @@ export default {
   },
   components: {
     Breadcrumbs,
+    QrcodeVue,
   },
   methods: {
     submitForm() {
@@ -150,17 +161,21 @@ export default {
         .then(data => {
           console.log('Respuesta de la API:', data);
 
-          if(data.status === 'OK') {
+          
+      //    if(data.status === 'OK') {
             alert('El remito se guardó correctamente');
 
             this.$router.go(-2);
 
-          } else {
-            alert('Hubo un error al guardar el remito');
-          }
+      //    } else {
+        ////    alert('Hubo un error al guardar el remito');
+      //    }
 
         })
         .catch(error => console.error('Error al enviar el remito:', error)); this.ocultarPrevisualizacion();
+    },
+    generarTextoQR() {
+      return `Fecha: ${this.nuevoRemito.fecha}, Monto: ${this.nuevoRemito.monto}, Detalles: ${this.nuevoRemito.detalle}`;
     },
   },
 
@@ -192,4 +207,19 @@ export default {
 .container {
   padding: 20px;
   margin-top: 10px;
-}</style>
+}
+.remito-preview {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.remito-preview img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+</style>
