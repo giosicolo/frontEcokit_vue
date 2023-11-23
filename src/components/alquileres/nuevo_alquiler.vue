@@ -35,11 +35,11 @@
               <div class="row mb-3 border-top my-4 mt-2">
                 <div class="col-md-6 mt-3">
                   <label for="fechaInicio">Fecha de inicio:</label>
-                  <input type="date" v-model="fechaInicio" class="form-control">
+                  <input type="date" v-model="nuevoAlquiler.fecha_inicio" class="form-control">
                 </div>
                 <div class="col-md-6 mt-3">
                   <label for="fechaFinal">Fecha final:</label>
-                  <input type="date" v-model="fechaFinal" class="form-control">
+                  <input type="date" v-model="nuevoAlquiler.fecha_fin" class="form-control">
                 </div>
               </div>
 
@@ -70,8 +70,8 @@
               </div>
 
               <div class="mt-2 d-flex justify-content-between">
-                <router-link to="/remitos" class="btn btn-secondary">Cancelar</router-link>
-                <button type="submit" class="btn btn-primary">Previsualizar</button>
+                <router-link to="/alquileres" class="btn btn-secondary">Cancelar</router-link>
+                <button type="submit" class="btn btn-primary"> Guardar</button>
               </div>
             </div>
           </form>
@@ -93,10 +93,13 @@ import Dropdowns from "../alquileres/Dropdown.vue";
 
 export default {
   data() {
-    return {
-      empresa: "",
+    return { nuevoAlquiler: {
+      empresa_id: 5 ,
+      fecha_inicio:"", 
+      fecha_fin: "",
+      vendedor_id: "1" ,
+      monto_base: 500,} ,
       yacimiento: "",
-      fechaFinal: "",
       tipoPlanta: "",
       cantidadPlantas: 0,
       capacidadPlantas: "500",
@@ -121,18 +124,6 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      const formData = {
-        empresa: this.empresa,
-        yacimiento: this.yacimiento,
-        fechaInicio: this.fechaInicio,
-        fechaFinal: this.fechaFinal,
-        tipoPlanta: this.tipoPlanta,
-        cantidadPlantas: this.cantidadPlantas,
-        capacidadPlantas: this.capacidadPlantas,
-      };
-      // Aquí puedes enviar formData a través de una llamada API o realizar otras acciones necesarias.
-    },
     getSelectedYacimientoDetails(selectedId) {
       // Lógica para mostrar detalles del yacimiento seleccionado
       const selectedYacimiento = this.yacimientos.find(yacimiento => yacimiento.nombre_id === selectedId);
@@ -158,16 +149,46 @@ export default {
         console.error("Error al obtener la lista de empresas", error);
       }
     },
-  },
+ 
+
+  submitForm() {
+      console.log("Datos del nuevo alquiler:", this.nuevoAlquiler);
+
+      fetch('http://localhost:4004/api/alquiler', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.nuevoAlquiler),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Respuesta de la API:', data);
+
+
+          if (data && data.data && data.data.alquiler_id) {
+            const AlqId = data.data.alquiler_id;
+            alert(`El alquiler se creó correctamente con el ID: ${AlqId}`);
+            setTimeout(() => {
+              this.$router.push('/alquileres');
+            }, 1000);
+          } else {
+            alert('Hubo un problema al crear el alquiler');
+            // Otra lógica si la creación del remito falla
+          }
+
+        })
+        .catch(error => console.error('Error al enviar el remito:', error));
+    },  },
+
   mounted() {
     // Llama al método para obtener la lista de empresas cuando el componente se carga
     this.fetchEmpresas();
   },
+
+
   components: { Breadcrumbs, Dropdowns }
 };
-
-
-
 
 
 </script>
