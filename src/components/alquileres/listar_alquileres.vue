@@ -86,6 +86,14 @@ export default {
       }
     },
   },
+  obtenerAlquileres() {
+    fetch('http://localhost:4004/api/alquiler')
+      .then(response => response.json())
+      .then(data => {
+        this.alquileres = data.data;
+      })
+      .catch(error => console.error('Error fetching alquileres:', error));
+  },
   created() {
     // Realiza la solicitud HTTP para obtener los alquileres desde tu API local
     // Asume que la API está en http://localhost:3000/api/remitos
