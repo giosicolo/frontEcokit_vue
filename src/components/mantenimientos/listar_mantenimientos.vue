@@ -28,175 +28,89 @@
           <tr>
             <th>Fecha</th>
             <th>Alquiler</th>
-            <th>Mantenimiento</th>
+            <th>Descripción</th>
             <th>Planta</th>
             <th>Usuario</th>
             <th>Acciones</th> <!-- Columna de acciones -->
           </tr>
         </thead>
         <tbody>
-      <tr v-for="mantenimiento in paginatedMantenimientos" :key="mantenimiento.id">
+          <tr v-for="mantenimiento in paginatedMantenimientos" :key="mantenimiento.id">
             <td>{{ mantenimiento.fecha }}</td>
             <td>{{ mantenimiento.alquiler }}</td>
             <td>{{ mantenimiento.tipoMantenimiento }}</td>
             <td>{{ mantenimiento.planta }}</td>
             <td>{{ mantenimiento.usuario }}</td>
             <td>
-              <button class="btn" @click="eliminar"><font-awesome-icon :icon="['fas', 'eye']" /></button>
-              <button class="btn" @click="editar"><font-awesome-icon :icon="['fas', 'pen']" /></button>
-              <button class="btn" @click="eliminar"><font-awesome-icon :icon="['fas', 'trash']" /></button>
+              <router-link :to="'/mantenimiento/ver/' + mantenimiento.id">
+                <button class="btn"><font-awesome-icon :icon="['fas', 'eye']" /></button>
+              </router-link>
+              <router-link :to="'/mantenimiento/editar/' + mantenimiento.id">
+                <button class="btn"><font-awesome-icon :icon="['fas', 'pen']" /></button>
+              </router-link>
+              <button class="btn" @click="eliminarMantenimiento(mantenimiento.id)"><font-awesome-icon :icon="['fas', 'trash']" /></button>
             </td>
-
           </tr>
         </tbody>
         <tfoot v-if="totalPaginas > 1">
-      <tr>
-        <td colspan="6" class="text-center">
-          <button @click="paginaAnterior" class="link-button m-1" :disabled="paginaActual === 1">Anterior</button>
-          <span>{{ paginaActual }} de {{ totalPaginas }}</span>
-          <button @click="paginaSiguiente" class="link-button m-1" :disabled="paginaActual === totalPaginas">Siguiente</button>
-        </td>
-      </tr>
-    </tfoot>
+          <tr>
+            <td colspan="6" class="text-center">
+              <button @click="paginaAnterior" class="link-button m-1" :disabled="paginaActual === 1">Anterior</button>
+              <span>{{ paginaActual }} de {{ totalPaginas }}</span>
+              <button @click="paginaSiguiente" class="link-button m-1" :disabled="paginaActual === totalPaginas">Siguiente</button>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
 </template>
-  
-  
-    
+
 <script>
+import axios from 'axios';
 import Breadcrumbs from '../generales/Breadcrumbs.vue';
+
 export default {
   data() {
     return {
       filtro: '',
-      mantenimientos: [
-        {
-          id: 1,
-          fecha: '2023-10-01',
-          alquiler: 'Alquiler 1',
-          tipoMantenimiento: 'Mantenimiento A',
-          planta: 'Planta 1',
-          usuario: 'Usuario 1',
-        },
-        {
-          id: 2,
-          fecha: '2023-10-02',
-          alquiler: 'Alquiler 2',
-          tipoMantenimiento: 'Mantenimiento B',
-          planta: 'Planta 2',
-          usuario: 'Usuario 2',
-        },
-        {
-          id: 3,
-          fecha: '2023-10-02',
-          alquiler: 'Alquiler 3',
-          tipoMantenimiento: 'Mantenimiento B',
-          planta: 'Planta 3',
-          usuario: 'Usuario 3',
-        },
-        {
-          id: 4,
-          fecha: '2023-10-02',
-          alquiler: 'Alquiler 3',
-          tipoMantenimiento: 'Mantenimiento C',
-          planta: 'Planta 3',
-          usuario: 'Usuario 3',
-        },
-        {
-          id: 4,
-          fecha: '2023-10-02',
-          alquiler: 'Alquiler 3',
-          tipoMantenimiento: 'Mantenimiento C',
-          planta: 'Planta 3',
-          usuario: 'Usuario 3',
-        },
-        {
-          id: 4,
-          fecha: '2023-10-02',
-          alquiler: 'Alquiler 3',
-          tipoMantenimiento: 'Mantenimiento C',
-          planta: 'Planta 3',
-          usuario: 'Usuario 3',
-        },
-        {
-          id: 4,
-          fecha: '2023-10-02',
-          alquiler: 'Alquiler 3',
-          tipoMantenimiento: 'Mantenimiento C',
-          planta: 'Planta 3',
-          usuario: 'Usuario 3',
-        },
-        {
-          id: 4,
-          fecha: '2023-10-02',
-          alquiler: 'Alquiler 3',
-          tipoMantenimiento: 'Mantenimiento C',
-          planta: 'Planta 3',
-          usuario: 'Usuario 3',
-        },
-        {
-          id: 4,
-          fecha: '2023-10-02',
-          alquiler: 'Alquiler 3',
-          tipoMantenimiento: 'Mantenimiento C',
-          planta: 'Planta 3',
-          usuario: 'Usuario 3',
-        },
-        {
-          id: 4,
-          fecha: '2023-10-02',
-          alquiler: 'Alquiler 3',
-          tipoMantenimiento: 'Mantenimiento C',
-          planta: 'Planta 3',
-          usuario: 'Usuario 3',
-        },
-        {
-          id: 4,
-          fecha: '2023-10-02',
-          alquiler: 'Alquiler 3',
-          tipoMantenimiento: 'Mantenimiento C',
-          planta: 'Planta 3',
-          usuario: 'Usuario 3',
-        },
-
-        // Ejemplos de datos
-      ],
+      mantenimientos: [],
       elementosPorPagina: 7,
       paginaActual: 1,
     };
   },
   computed: {
     paginatedMantenimientos() {
-      // Aplicar el filtro a los datos antes de paginar
       const filteredData = this.mantenimientos.filter(mantenimiento =>
         Object.values(mantenimiento).some(valor =>
           valor && valor.toString().toLowerCase().includes(this.filtro.toLowerCase().trim())
         )
       );
 
-      // Calcula el índice de inicio y final para la paginación
       const startIndex = (this.paginaActual - 1) * this.elementosPorPagina;
       const endIndex = startIndex + this.elementosPorPagina;
 
-      // Retorna los datos paginados y filtrados
       return filteredData.slice(startIndex, endIndex);
     },
     totalPaginas() {
-      // Calcula el número total de páginas
-      return Math.ceil(
-        this.mantenimientos
-          .filter(mantenimiento =>
-            Object.values(mantenimiento).some(valor =>
-              valor && valor.toString().toLowerCase().includes(this.filtro.toLowerCase().trim())
-            )
-          )
-          .length / this.elementosPorPagina
-      );
+      return Math.ceil(this.mantenimientos.length / this.elementosPorPagina);
     },
   },
   methods: {
+    async eliminarMantenimiento(mantenimientoId) {
+      try {
+
+        if (!confirm('¿Estás seguro de que quieres eliminar este mantenimiento?')) {
+          return;
+        }
+
+
+        await axios.delete(`http://localhost:4004/api/mantenimiento/mantenimientos/${mantenimientoId}`);
+        this.obtenerMantenimientos(); // Actualizar la lista después de eliminar
+      } catch (error) {
+        console.error('Error al eliminar el mantenimiento:', error);
+      }
+    },
     paginaAnterior() {
       if (this.paginaActual > 1) {
         this.paginaActual--;
@@ -207,22 +121,29 @@ export default {
         this.paginaActual++;
       }
     },
-    // Resto de tus métodos existentes
+    obtenerMantenimientos() {
+      axios.get('http://localhost:4004/api/mantenimiento/mantenimientos')
+        .then(response => {
+          this.mantenimientos = response.data;
+        })
+        .catch(error => {
+          console.error('Error al obtener los mantenimientos:', error);
+        });
+    },
+  },
+  mounted() {
+    this.obtenerMantenimientos();
   },
   components: {
-    Breadcrumbs
-  }
+    Breadcrumbs,
+  },
 };
 </script>
-    
-  
-  
+
 <style scoped>
-/* Agrega estilos personalizados para esta vista  */
 .mantenimiento {
   padding: 20px;
   margin: 10px;
-
 }
 
 .buscador {
@@ -241,6 +162,7 @@ export default {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
   border-radius: 9px;
 }
+
 .link-button {
   background: none;
   border: none;
@@ -251,8 +173,8 @@ export default {
   font: inherit;
   outline: inherit;
 }
+
 .card {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 </style>
-    
