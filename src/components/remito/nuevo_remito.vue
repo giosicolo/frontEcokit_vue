@@ -161,6 +161,7 @@ export default {
         .then(data => {
           console.log('Respuesta de la API:', data);
 
+<<<<<<< HEAD
           
       //    if(data.status === 'OK') {
             alert('El remito se guardó correctamente');
@@ -170,6 +171,18 @@ export default {
       //    } else {
         ////    alert('Hubo un error al guardar el remito');
       //    }
+=======
+          if (data && data.data && data.data.remito_id) {
+            const remitoId = data.data.remito_id;
+            alert(`El remito se creó correctamente con el ID: ${remitoId}`);
+            setTimeout(() => {
+              this.$router.push('/remitos');
+            }, 1000);
+          } else {
+            alert('Hubo un problema al crear el remito');
+            // Otra lógica si la creación del remito falla
+          }
+>>>>>>> 896bc6c488e9982c4732f5ce3f25bf5946602288
 
         })
         .catch(error => console.error('Error al enviar el remito:', error)); this.ocultarPrevisualizacion();
@@ -208,6 +221,7 @@ export default {
   padding: 20px;
   margin-top: 10px;
 }
+<<<<<<< HEAD
 .remito-preview {
   padding: 20px;
   border: 1px solid #ddd;
@@ -222,4 +236,6 @@ export default {
 }
 
 
+=======
+>>>>>>> 896bc6c488e9982c4732f5ce3f25bf5946602288
 </style>

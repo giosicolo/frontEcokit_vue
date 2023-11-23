@@ -24,8 +24,10 @@
                 </div>
                 <div class="col-md-6">
                   <label for="yacimiento">Yacimiento:</label>
-                  <select v-model="yacimiento" class="form-control">
-                    <!-- Opciones para seleccionar el yacimiento -->
+                  <select v-model="selectedYacimiento" class="form-control">
+                    <option v-for="yacimiento in yacimientos" :key="yacimiento.nombre_id" :value="yacimiento.nombre_id">
+                      {{ yacimiento.nombre_id }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -98,7 +100,24 @@ export default {
       tipoPlanta: "",
       cantidadPlantas: 0,
       capacidadPlantas: "500",
-      empresas: [], // Para almacenar la lista de empresas
+      empresas: [],
+      yacimientos: [
+        {
+          nombre_id: 'yacimiento_1',
+          cant_operadores: 20,
+          cant_banios_quimicos: 5,
+          telefono_contacto: '123-456-7890',
+          empresa_id: 'empresa_1',
+          ubicacion_id: 'ubicacion_1'
+        },
+        {
+          nombre_id: 'yacimiento_2',
+          cant_operadores: 15,
+          cant_banios_quimicos: 3,
+          telefono_contacto: '987-654-3210',
+          empresa_id: 'empresa_2',
+          ubicacion_id: 'ubicacion_2'
+        },]
     };
   },
   methods: {
@@ -113,6 +132,11 @@ export default {
         capacidadPlantas: this.capacidadPlantas,
       };
       // Aquí puedes enviar formData a través de una llamada API o realizar otras acciones necesarias.
+    },
+    getSelectedYacimientoDetails(selectedId) {
+      // Lógica para mostrar detalles del yacimiento seleccionado
+      const selectedYacimiento = this.yacimientos.find(yacimiento => yacimiento.nombre_id === selectedId);
+      return selectedYacimiento ? JSON.stringify(selectedYacimiento) : 'No se encontraron detalles';
     },
     async fetchEmpresas() {
       try {
