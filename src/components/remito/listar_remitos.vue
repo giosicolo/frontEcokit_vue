@@ -18,7 +18,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Monto</th>
+              <th>Monto</th> 
               <th>Conformidad</th>
               <th>Detalle</th>
               <th>Fecha</th>
@@ -28,7 +28,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="remito in remitos" :key="remito.remito_id">
+            <tr v-for="remito in paginatedRemito" :key="remito.id">
               <td>{{ remito.monto }}</td>
               <td>{{ remito.conformidad ? 'Sí' : 'No' }}</td>
               <td>{{ remito.detalle }}</td>
@@ -45,6 +45,15 @@
               </td>
             </tr>
           </tbody>
+          <tfoot v-if="totalPaginas > 1">
+          <tr>
+            <td colspan="6" class="text-center">
+              <button @click="paginaAnterior" class="link-button m-1" :disabled="paginaActual === 1">Anterior</button>
+              <span>{{ paginaActual }} de {{ totalPaginas }}</span>
+              <button @click="paginaSiguiente" class="link-button m-1" :disabled="paginaActual === totalPaginas">Siguiente</button>
+            </td>
+          </tr>
+        </tfoot>
         </table>
       </div>
     </div>
@@ -59,14 +68,45 @@ import axios from 'axios';
 export default {
   data() {
     return {
+      filtro: '',
       remitos: [],
+      elementosPorPagina: 8,
+      paginaActual: 1,
     };
+  },
+  computed: {
+    paginatedRemito() {
+      const filteredData = this.remitos.filter(remito =>
+        Object.values(remito).some(valor =>
+          valor && valor.toString().toLowerCase().includes(this.filtro.toLowerCase().trim())
+        )
+      );
+
+      const startIndex = (this.paginaActual - 1) * this.elementosPorPagina;
+      const endIndex = startIndex + this.elementosPorPagina;
+
+      return filteredData.slice(startIndex, endIndex);
+    },
+    totalPaginas() {
+      return Math.ceil(this.remitos.length / this.elementosPorPagina);
+    },
   },
   components: {
     Breadcrumbs,
     nuevo_remito,
   },
   methods: {
+
+    paginaAnterior() {
+      if (this.paginaActual > 1) {
+        this.paginaActual--;
+      }
+    },
+    paginaSiguiente() {
+      if (this.paginaActual < this.totalPaginas) {
+        this.paginaActual++;
+      }
+    },
     ver() {
       // Lógica para ver el detalle del remito
     },
@@ -106,5 +146,16 @@ export default {
 .contenedor {
   padding: 20px;
   margin-top: 10px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font: inherit;
+  outline: inherit;
 }
 </style>
