@@ -16,26 +16,26 @@
             <router-link to="/" class="nav-link">
               <font-awesome-icon class="pl-5" icon="home" /> Inicio</router-link>
           </li>
-          <li class="nav-item">
+          <li :class="{ 'disabled': usuarioLogeado.usuario === 'facu' || usuarioLogeado.usuario === 'gio' }" class="nav-item">
             <router-link to="/mantenimiento" class="nav-link">
               <font-awesome-icon icon="screwdriver-wrench" />
               Mantenimientos
             </router-link>
           </li>
-          <li class="nav-item">
+          <li :class="{ 'disabled': usuarioLogeado.usuario === 'facu' || usuarioLogeado.usuario === 'rodri' }" class="nav-item">
             <router-link to="/alquileres" class="nav-link">
               <font-awesome-icon icon="pen-to-square" />
               Alquileres
             </router-link>
           </li>
-          <li class="nav-item">
+          <li :class="{ 'disabled': usuarioLogeado.usuario === 'gio' || usuarioLogeado.usuario === 'rodri' }" class="nav-item">
             <router-link to="/remitos" class="nav-link">
               <font-awesome-icon icon="file" />
               Remitos
             </router-link>
           </li>
           <li class="nav-item">
-            <button v-if="$route.path === '/'" class="nav-link" @click="scrollToElement">
+            <button class="nav-link" @click="scrollToElement">
               <font-awesome-icon icon="building" />
               Nosotros
             </button>
@@ -47,7 +47,7 @@
         <div v-if="usuarioLogeado" class="nav-item">
           <button @click="cerrarSesion" class="btn btn-link text-white">
             <font-awesome-icon icon="right-from-bracket" />
-            Cerrar Sesión 
+            Cerrar Sesión
           </button>
         </div>
         <div v-if="usuarioLogeado" class="nav-item">
@@ -77,13 +77,18 @@ export default {
       this.$router.push('/');
     },
     scrollToElement() {
-      // Acceder al elemento al que quieres hacer scroll usando su ID
-      const element = document.getElementById('quienes-somos');
+      // Redireccionar al path '/'
+      this.$router.push('/').then(() => {
+        // Acceder al elemento al que quieres hacer scroll usando su ID
+        const element = document.getElementById('quienes-somos');
 
-      // Hacer scroll suavemente hasta el elemento
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+        // Hacer scroll suavemente hasta el elemento
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }).catch(error => {
+        console.error('Error al redireccionar:', error);
+      });
     }
   },
 };
@@ -99,4 +104,9 @@ export default {
 .icon {
   color: #fff;
 }
+.disabled {
+  pointer-events: none;
+  opacity: 0.6; /* Cambiar la opacidad o el estilo a tu preferencia */
+}
+
 </style>

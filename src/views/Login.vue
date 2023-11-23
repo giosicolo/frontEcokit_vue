@@ -45,7 +45,9 @@ export default {
       },
       usuarios: [
         { usuario: 'admin', contrasena: 'admin' },
-        { usuario: 'usuario2', contrasena: 'contrasena2' },
+        { usuario: 'gio', contrasena: 'gio' },
+        { usuario: 'facu', contrasena: 'facu' },
+        { usuario: 'rodri', contrasena: 'rodri' },
         // Agrega más usuarios según sea necesario
       ],
       alerta: '', // Variable para almacenar el mensaje de alerta
