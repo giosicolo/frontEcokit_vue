@@ -43,7 +43,7 @@
         </ul>
       </div>
 
-      <div class="col-sm-12 d-flex align-items-center">
+      <div class="d-flex align-items-center">
         <div v-if="usuarioLogeado" class="nav-item">
           <button @click="cerrarSesion" class="btn btn-link text-white">
             <font-awesome-icon icon="right-from-bracket" />
