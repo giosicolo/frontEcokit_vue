@@ -29,12 +29,13 @@
           </thead>
           <tbody>
             <tr v-for="remito in paginatedRemito" :key="remito.id">
-              <td>{{ remito.monto }}</td>
+              <td>USD {{ remito.monto }}</td>
               <td>{{ remito.conformidad ? 'Sí' : 'No' }}</td>
               <td>{{ remito.detalle }}</td>
               <td>{{ remito.fecha }}</td>
               <td>Alquiler {{ remito.alquiler_id }}</td>
-              <td>Cobro {{ remito.cobro_id }}</td>
+              
+              <td> {{ remito.cobro_id }}</td>
               <td>
                 <router-link :to="'/remitos/' + remito.remito_id">
                   <button class="btn" ><font-awesome-icon :icon="['fas', 'eye']" /></button>

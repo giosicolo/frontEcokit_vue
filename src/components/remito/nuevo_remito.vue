@@ -21,7 +21,7 @@
                   <select v-model="nuevoRemito.alquiler_id" class="form-control" required>
                     <option v-for="alquiler in alquileresDisponibles" :key="alquiler.alquiler_id"
                       :value="alquiler.alquiler_id">
-                      {{ alquiler.fecha_inicio }} - {{ alquiler.monto_base }} $
+                      Alquiler {{ alquiler.alquiler_id}} - {{ alquiler.fecha_inicio }} - {{ alquiler.monto_base }} $
                     </option>
                   </select>
                 </div>
@@ -37,7 +37,7 @@
 
 
               <div class="row mb-3">
-                <label for="monto" class="col-sm-4 col-form-label">Monto en $:</label>
+                <label for="monto" class="col-sm-4 col-form-label">Monto en USD:</label>
                 <div class="col-sm-8">
                   <input type="number" id="monto" v-model="nuevoRemito.monto" class="form-control" required>
                 </div>
@@ -70,7 +70,7 @@
               <h3 class="mb-4">Previsualización de Remito</h3>
               <div class="row">
                 <div class="col-md-6">
-                  <p class="mb-2"><strong>Alquiler en referencia:</strong> {{ alquilerSeleccionado.fecha_inicio }} - {{ alquilerSeleccionado.monto_base }} $</p>
+                  <p class="mb-2"><strong>Alquiler en referencia:</strong> Alquiler {{ alquilerSeleccionado.alquiler_id}} - {{ alquilerSeleccionado.fecha_inicio }} - {{ alquilerSeleccionado.monto_base }} $</p>
                   <p class="mb-2"><strong>Fecha del Remito:</strong> {{ nuevoRemito.fecha }}</p>
                   <p class="mb-2"><strong>Monto en $:</strong> {{ nuevoRemito.monto }}</p>
                   <p class="mb-2"><strong>Existe Conformidad:</strong> {{ nuevoRemito.conformidad ? 'Sí' : 'No' }}</p>
@@ -148,6 +148,10 @@ export default {
       this.previsualizar = false;
     },
     guardarRemito() {
+      //colocar el alquilerid y el cobroid en el remito desde el alquilerseleccionado
+      this.nuevoRemito.alquiler_id = this.alquilerSeleccionado.alquiler_id;
+      this.nuevoRemito.cobro_id = this.alquilerSeleccionado.cobro_id;
+
       console.log("Datos del nuevo remito:", this.nuevoRemito);
 
       fetch('http://localhost:4004/api/remito/registrar_remito', {
