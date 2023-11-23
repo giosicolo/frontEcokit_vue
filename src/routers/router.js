@@ -6,7 +6,7 @@ import nuevoRemito from '../components/remito/nuevo_remito.vue' // Importa la vi
 import Alquileres from '../views/alquiler/alquiler.vue' // Importa la vista de alquileres
 import nuevoAlquiler from '../components/alquileres/nuevo_alquiler.vue' // Importa la vista para generar nuevo alquiler
 
-import FormMantenimiento from '../components/mantenimientos/FormMantenimiento.vue'
+import FormMantenimiento from '../components/mantenimientos/nuevo_mantenimiento.vue'
 import Login from '../views/Login.vue'
 import store from '../components/store.js'
 const routes = [

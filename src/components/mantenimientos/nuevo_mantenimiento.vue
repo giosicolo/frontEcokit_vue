@@ -1,10 +1,15 @@
 <template>
   <Breadcrumbs></Breadcrumbs>
-  <div class="row m-5">
-    <h1 class="text-center">Alta Nuevo Mantenimiento:</h1>
+  <div class="alta">
+    <h1 class="my-4">
+      Alta Nuevo Mantenimiento
+    </h1>
     <div class="card p-0">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="p-0 text-center">Mantenimiento</h3>
+        <h3>
+      <font-awesome-icon icon="gear" />
+      Datos mantenimiento
+    </h3>
       </div>
       <div class="card-body">
         <form @submit.prevent="submitForm" class="my-5 d-flex justify-content-center align-items-center">
@@ -72,3 +77,16 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .card {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.alta {
+  padding: 20px;
+  margin: 10px;
+
+}
+
+</style>

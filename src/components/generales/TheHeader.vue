@@ -13,28 +13,43 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <router-link to="/" class="nav-link">Inicio</router-link>
+            <router-link to="/" class="nav-link">
+              <font-awesome-icon class="pl-5" icon="home" /> Inicio</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/mantenimiento" class="nav-link">Mantenimientos</router-link>
+            <router-link to="/mantenimiento" class="nav-link">
+              <font-awesome-icon icon="screwdriver-wrench" />
+              Mantenimientos
+            </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/alquileres" class="nav-link">Alquileres</router-link>
+            <router-link to="/alquileres" class="nav-link">
+              <font-awesome-icon icon="pen-to-square" />
+              Alquileres
+            </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/remitos" class="nav-link">Remitos</router-link>
+            <router-link to="/remitos" class="nav-link">
+              <font-awesome-icon icon="file" />
+              Remitos
+            </router-link>
           </li>
           <li class="nav-item">
-            <button class="nav-link" @click="scrollToElement">Nosotros</button>
+            <button v-if="$route.path === '/'" class="nav-link" @click="scrollToElement">
+              <font-awesome-icon icon="building" />
+              Nosotros
+            </button>
           </li>
         </ul>
       </div>
 
       <div class="d-flex align-items-center">
         <div v-if="usuarioLogeado" class="nav-item">
-          <button @click="cerrarSesion" class="btn btn-link text-white">Cerrar Sesión</button>
+          <button @click="cerrarSesion" class="btn btn-link text-white">
+            <font-awesome-icon icon="right-from-bracket" />
+            Cerrar Sesión 
+          </button>
         </div>
-
         <div v-if="usuarioLogeado" class="nav-item">
           <router-link to="/" class="nav-link" style="color: aliceblue;">{{ usuarioLogeado.usuario }}</router-link>
         </div>
@@ -78,9 +93,10 @@ export default {
   background-color: #333;
   /* Cambia el color de fondo del enlace activo */
   color: #fff;
-  /* Cambia el color del texto del enlace activo */
+  border-radius: 10px;
 }
-.icon{
+
+.icon {
   color: #fff;
 }
 </style>
